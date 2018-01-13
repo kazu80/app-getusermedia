@@ -1,36 +1,45 @@
-<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="bower_components/polymer/polymer-element.html">
 
 <dom-module id="app-getusermedia">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]!</h2>
-  </template>
+    <template>
+        <style>
+            :host {
+                display : block;
+            }
+        </style>
+        <h2>Hello [[prop1]]!</h2>
+    </template>
 
-  <script>
-    /**
-     * `app-getusermedia`
-     * 
-     *
-     * @customElement
-     * @polymer
-     * @demo demo/index.html
-     */
-    class AppGetusermedia extends Polymer.Element {
-      static get is() { return 'app-getusermedia'; }
-      static get properties() {
-        return {
-          prop1: {
-            type: String,
-            value: 'app-getusermedia'
-          }
-        };
-      }
-    }
+    <script>
+        /**
+         * `app-getusermedia`
+         *
+         *
+         * @customElement
+         * @polymer
+         * @demo demo/index.html
+         */
+        class AppGetusermedia extends Polymer.Element {
+            static get is () { return 'app-getusermedia'; }
 
-    window.customElements.define(AppGetusermedia.is, AppGetusermedia);
-  </script>
+            static get properties () {
+                return {
+                    prop1: {
+                        type : String,
+                        value: 'app-getusermedia'
+                    }
+                };
+            }
+
+            constructor () {
+                super ();
+            }
+
+            ready () {
+                super.ready ();
+            }
+        }
+
+        window.customElements.define (AppGetusermedia.is, AppGetusermedia);
+    </script>
 </dom-module>
