@@ -1,0 +1,11 @@
+# Created by .ignore support plugin (hsz.mobi)
+### PureScript template
+# Dependencies
+.psci_modules
+bower_components
+node_modules
+
+# Generated files
+.psci
+output
+
