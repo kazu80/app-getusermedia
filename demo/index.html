@@ -24,17 +24,23 @@
         <template>
             <app-getusermedia id="media" audio video></app-getusermedia>
 
+            <h4>result message</h4>
+            <div id="message" style="padding: 10px; border: 1px solid #888888; border-radius: 4px"></div>
+
             <script>
                 const media = document.getElementById('media');
+                const message = document.getElementById ('message');
 
                 // successful event
                 media.addEventListener('getusermedia', (event) => {
                     console.log(event.detail.stream);
+                    message.innerText = 'Get user media!';
                 });
 
                 // error event
                 media.addEventListener('error', (event) => {
                     console.log(event.detail.message);
+                    message.innerText = event.detail.message;
                 });
             </script>
         </template>
