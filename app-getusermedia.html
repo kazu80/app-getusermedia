@@ -24,19 +24,70 @@
 
             static get properties () {
                 return {
-                    prop1: {
-                        type : String,
-                        value: 'app-getusermedia'
+                    audio: {
+                        type: Boolean,
+                        value: false,
+                        observer: '_audio'
+                    },
+                    video: {
+                        type: Boolean,
+                        value: false,
+                        observer: '_video'
                     }
                 };
             }
 
             constructor () {
                 super ();
+
+                // variables
+                this._constraints = {};
+
+                /**
+                 * Callback methods
+                 */
+                this._callbackGetUserMedia = (stream) => {
+                    this.dispatchEvent (
+                        new CustomEvent ('getusermedia', {
+                            detail: {stream: stream}
+                        })
+                    );
+                };
+
+                this._callbackGetUserMediaError = (error) => {
+                    this.dispatchEvent (
+                        new CustomEvent ('error', {
+                            detail: {
+                                message: "The following error occurred: " + error.name,
+                                error: error,
+                            }
+                        })
+                    );
+                };
             }
 
             ready () {
                 super.ready ();
+
+                if (!navigator.mediaDevices) {
+                    this.dispatchEvent (new CustomEvent ('error', {detail: {message: 'getUserMedia() not supported.'}}));
+                    return;
+                }
+
+                navigator.mediaDevices.getUserMedia (this._constraints)
+                    .then (this._callbackGetUserMedia)
+                    .catch (this._callbackGetUserMediaError);
+            }
+
+            /**
+             * Observer
+             */
+            _audio (val) {
+                this._constraints.audio = val;
+            }
+
+            _video (val) {
+                this._constraints.video = val;
             }
         }
 

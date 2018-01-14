@@ -22,7 +22,21 @@
     <h3>Basic app-getusermedia demo</h3>
     <demo-snippet>
         <template>
-            <app-getusermedia></app-getusermedia>
+            <app-getusermedia id="media" audio video></app-getusermedia>
+
+            <script>
+                const media = document.getElementById('media');
+
+                // successful event
+                media.addEventListener('getusermedia', (event) => {
+                    console.log(event.detail.stream);
+                });
+
+                // error event
+                media.addEventListener('error', (event) => {
+                    console.log(event.detail.message);
+                });
+            </script>
         </template>
     </demo-snippet>
 </div>
