@@ -1,21 +1,70 @@
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/owner/my-element)
+
 # \<app-getusermedia\>
 
+This is wrapper of navigator.getUserMedia
 
+## DEMO
 
-## Install the Polymer-CLI
+<!--
+```html
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="app-getusermedia.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<app-getusermedia></app-getusermedia>
+```
 
-First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your element locally.
-
-## Viewing Your Element
+## Installation
 
 ```
-$ polymer serve
+$ bower install --save monkick/app-getusermedia
 ```
 
-## Running Tests
+## Usage
 
-```
-$ polymer test
+At first. Import it at header.  
+
+```html
+    <link rel="import" href="../bower_components/app-getusermedia/app-getusermedia.html">
 ```
 
-Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
+Next. Add the `app-getusermedia` custom tag in body.
+
+```html
+    <app-getusermedia></app-getusermedia>
+```
+
+## Parameter
+
+* video - take video stream
+* audio - tale audio stream
+
+```html
+    <app-getusermedia video audio></app-getusermedia>
+```
+
+## Event
+
+* getusermedia - This event fire when successful take media stream.
+* error - This event fire when occur errors.
+
+```javascript
+    const media = document.getElementById('media');
+
+    // successful event
+    media.addEventListener('getusermedia', (event) => {
+        console.log(event.detail.stream);
+    });
+
+    // error event
+    media.addEventListener('error', (event) => {
+        console.log(event.detail.message);
+    });
+```
