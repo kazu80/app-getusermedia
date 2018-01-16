@@ -22,15 +22,20 @@
 
             static get properties () {
                 return {
-                    audio: {
+                    audio      : {
                         type: Boolean,
                         value: false,
                         observer: '_audio'
                     },
-                    video: {
+                    video      : {
                         type: Boolean,
                         value: false,
                         observer: '_video'
+                    },
+                    isUserMedia: {
+                        type    : Boolean,
+                        value   : false,
+                        observer: '_userMedia'
                     }
                 };
             }
@@ -53,6 +58,8 @@
                 };
 
                 this._callbackGetUserMediaError = (error) => {
+                    this.isUserMedia = false;
+
                     this.dispatchEvent (
                         new CustomEvent ('error', {
                             detail: {
@@ -72,9 +79,11 @@
                     return;
                 }
 
-                navigator.mediaDevices.getUserMedia (this._constraints)
-                    .then (this._callbackGetUserMedia)
-                    .catch (this._callbackGetUserMediaError);
+                this.start ();
+            }
+
+            start () {
+                this.isUserMedia = true;
             }
 
             /**
@@ -86,6 +95,14 @@
 
             _video (val) {
                 this._constraints.video = val;
+            }
+
+            _userMedia (val) {
+                if (val) {
+                    navigator.mediaDevices.getUserMedia (this._constraints)
+                        .then (this._callbackGetUserMedia)
+                        .catch (this._callbackGetUserMediaError);
+                }
             }
         }
 
