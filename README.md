@@ -4,6 +4,10 @@
 
 This is wrapper of navigator.getUserMedia
 
+## VERSION
+
+v0.2.1
+
 ## DEMO
 
 <!--
@@ -45,6 +49,7 @@ Next. Add the `app-getusermedia` custom tag in body.
 
 * video - take video stream
 * audio - tale audio stream
+* isUserMedia - status of getusermedia
 
 ```html
     <app-getusermedia video audio></app-getusermedia>
@@ -68,3 +73,7 @@ Next. Add the `app-getusermedia` custom tag in body.
         console.log(event.detail.message);
     });
 ```
+
+## Method
+
+start - It is build getusermedia. But auto started when put this element. 
